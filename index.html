@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratorija Annikit-mokejimas</title>
+    <title>Лаборатория Анникит - Оплата</title>
     <style>
         body {
             background-color: #121212;
@@ -91,62 +91,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>Annikit laboratorija</h1>
-        <p>Sveiki atvykę į Laboratorija Annikit mėnesinio mokesčio informacijos puslapį. Čia rasite visą reikalingą informaciją apie einamuosius mokėjimus.</p>
+        <h1>Лаборатория Анникит</h1>
+        <p>Добро пожаловать на страницу информации о ежемесячной оплате за лабораторию Анникит. Здесь вы найдете все необходимые детали о текущих и будущих платежах.</p>
         
         <div class="payment-details">
-            <h2>Mokėjimo informacija:</h2>
-            <p><strong>Suma:</strong> 137 EUR</p>
-            <p><strong>Mokėjimo data:</strong> 2024 m. rugsėjo 12 d</p>
-            <p><strong>Mokėjimo būdas:</strong> Bankinis pavedimas</p>
+            <h2>Детали оплаты:</h2>
+            <p><strong>Сумма:</strong> 5000 рублей</p>
+            <p><strong>Дата следующего платежа:</strong> 1 октября 2024</p>
+            <p><strong>Метод оплаты:</strong> Банковский перевод</p>
         </div>
         
         <div class="input-group">
-            <label for="account-number">Įveskite Annikit kortelės numerį:</label>
+            <label for="account-number">Введите номер счета:</label>
             <input type="text" id="account-number" name="account-number" minlength="12" maxlength="12" required>
         </div>
 
         <div class="button-group">
-            <button id="submit-button">Siųsti pinigus</button>
+            <button id="submit-button">Отправить деньги</button>
         </div>
         
         <div class="report" id="report">
-            <p id="report-message"></p>
+            <p>Ваш перевод успешно выполнен! Спасибо за оплату.</p>
         </div>
     </div>
     
     <div class="footer">
-        <p>&copy; 2024 Laboratorija Annikit. Visos teisos saugomos.</p>
+        <p>&copy; 2024 Лаборатория Анникит. Все права защищены.</p>
     </div>
 
     <script>
         document.getElementById('submit-button').addEventListener('click', function() {
+            var validAccountNumbers = [
+                '906345377653',
+                '105788630559',
+                '406872103980',
+                '275030679452'
+            ];
             var accountNumber = document.getElementById('account-number').value;
-            var amount = 137;  // Здесь можно изменить сумму или сделать её динамической
-            var scriptUrl = 'https://script.google.com/macros/s/AKfycbwBWZDP-kHKEQuhadWwfFHzVn-DU8kDrDbMZJ0yk88saNPe5WsEPTd0WPi6nab5isBj3w/exec'; // Замените на URL вашего веб-приложения
-
-            fetch(scriptUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ accountNumber: accountNumber, amount: amount }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                var reportElement = document.getElementById('report');
-                var reportMessage = document.getElementById('report-message');
-                
-                if (data.success) {
-                    reportMessage.textContent = data.message;
-                    reportElement.style.display = 'block';
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+            if (validAccountNumbers.includes(accountNumber)) {
+                document.getElementById('report').style.display = 'block';
+            } else {
+                alert('Номер счета неверен. Пожалуйста, проверьте и попробуйте снова.');
+            }
         });
     </script>
 </body>
