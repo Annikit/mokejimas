@@ -176,14 +176,27 @@
         });
     </script>
 
+<div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>Sąskaitos numeris neteisingas. Patikrinkite ir bandykite dar kartą.</p>
+            <button class="modal-btn" id="refreshBtn">Bandykite dar kartą</button>
+        </div>
+    </div>
+
     <script>
         const modal = document.getElementById("myModal");
         const openModalBtn = document.querySelector(".open-modal-btn");
         const closeModalBtn = document.querySelector(".close-btn");
         const refreshBtn = document.getElementById("refreshBtn");
 
+        openModalBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+
+
         refreshBtn.onclick = function() {
-            location.reload());
+            location.reload();
         }
     </script>
 </body>
